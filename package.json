@@ -1,0 +1,31 @@
+{
+  "name": "lost-contact",
+  "description": "App for simple contact form to use for luggage tags, etc",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WatCodeDatCode/lost-contact.git"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vue-tsc": "^1.8.5"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WatCodeDatCode/lost-contact/issues"
+  },
+  "homepage": "https://github.com/WatCodeDatCode/lost-contact#readme"
+}
