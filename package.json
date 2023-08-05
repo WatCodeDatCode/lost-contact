@@ -3,7 +3,6 @@
   "description": "App for simple contact form to use for luggage tags, etc",
   "private": true,
   "version": "1.0.0",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WatCodeDatCode/lost-contact.git"
