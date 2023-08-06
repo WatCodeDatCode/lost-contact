@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, watch } from "vue";
 
 interface FormData {
   name: string;
@@ -23,9 +23,15 @@ const validInputs = () => {
 
 const sendMessage = () => {
   const valid = validInputs();
+  if (!valid) return;
   alert(valid);
   alert(JSON.stringify(formData));
 };
+
+watch(formData, (value) => {
+  if (value.email) errors.email = false;
+  if (value.message) errors.message = false;
+});
 </script>
 
 <template>
