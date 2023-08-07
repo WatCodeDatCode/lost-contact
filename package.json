@@ -12,9 +12,10 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.vue"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.vue --fix"
   },
   "dependencies": {
+    "eslint-plugin-prettier": "^5.0.0",
     "sass": "^1.64.2",
     "vue": "^3.3.4"
   },

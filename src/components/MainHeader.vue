@@ -9,6 +9,10 @@ import logoSrc from "@/assets/logo.svg";
     </div>
     <h1>Lost Luggage Contact</h1>
   </header>
+  <p>
+    Please fill out the form below and I will get in touch as soon as possible.
+  </p>
+  <p>Thank you so much!</p>
 </template>
 
 <style lang="sass" scoped>

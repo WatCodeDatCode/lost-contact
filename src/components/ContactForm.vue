@@ -38,20 +38,20 @@ watch(formData, (value) => {
   <form @submit.prevent="sendMessage">
     <div class="form-input">
       <input
+        v-model="formData.name"
         class="form-input"
         type="text"
         name="name"
         placeholder="Your name"
-        v-model="formData.name"
       />
     </div>
     <div class="form-input">
       <input
+        v-model="formData.email"
         class="form-input"
         name="email"
         type="email"
         placeholder="Your email address"
-        v-model="formData.email"
       />
       <p v-if="errors.email" class="form-error-message">
         Please enter a valid email
@@ -59,9 +59,9 @@ watch(formData, (value) => {
     </div>
     <div class="form-input">
       <textarea
+        v-model="formData.message"
         name="message"
         placeholder="Your message"
-        v-model="formData.message"
       />
       <p v-if="errors.message" class="form-error-message">
         Please enter a message
@@ -73,4 +73,10 @@ watch(formData, (value) => {
   </form>
 </template>
 
-<style lang="sass" scoped></style>
+<style lang="sass" scoped>
+form
+  width: 100%
+
+input, textarea
+  width: 100%
+</style>
