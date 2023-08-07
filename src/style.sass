@@ -1,3 +1,5 @@
+$primaryColor: #e0a800
+
 :root
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif
   line-height: 1.5
@@ -13,6 +15,7 @@
 
 * 
   box-sizing: border-box
+  
 a
   font-weight: 500
   color: #646cff
@@ -33,6 +36,9 @@ body
 h1
   font-size: 3.2em
   line-height: 1.1
+
+h1, h2, h3, h4, h5, h6 
+  color: $primaryColor
 
 button
   border-radius: 8px
@@ -62,10 +68,9 @@ button
   margin: 0 auto
   padding: 2rem
   padding-bottom: 0
-  justify-content: center
-  align-items: center
   display: flex
   flex-direction: column
+  align-items: center
 
 .page-content
   flex: 1 0 auto
