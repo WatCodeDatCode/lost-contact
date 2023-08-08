@@ -32,11 +32,14 @@ const validInputs = computed(() => {
   return errors.email || errors.message ? false : true;
 });
 
+const route = useRoute();
+const router = useRouter();
+
 const sendMessage = () => {
   errors.email = !formData.email || !emailIsValid.value;
   errors.message = !formData.message;
   if (!validInputs.value) return;
-  alert(JSON.stringify(formData));
+  router.push("/success");
 };
 
 watch(
@@ -46,9 +49,6 @@ watch(
     if (newVal.message !== oldVal.message) errors.message = false;
   }
 );
-
-const route = useRoute();
-const router = useRouter();
 
 onMounted(async () => {
   await router.isReady();
