@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { reactive, computed, watch } from "vue";
+import { reactive, computed, watch, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 interface FormData {
-  name: string;
+  item: string | null;
+  name: string | null;
   email: string;
   message: string;
 }
@@ -12,7 +14,13 @@ interface Errors {
   message: boolean;
 }
 
-const formData: FormData = reactive({ name: "", email: "", message: "" });
+const formData: FormData = reactive({
+  item: null,
+  name: null,
+  email: "",
+  message: ""
+});
+
 const errors: Errors = reactive({ email: false, message: false });
 
 const emailIsValid = computed(() => {
@@ -20,38 +28,47 @@ const emailIsValid = computed(() => {
   return regex.test(formData.email);
 });
 
-const validInputs = () => {
-  errors.email = !formData.email || !emailIsValid.value;
-  errors.message = !formData.message;
+const validInputs = computed(() => {
   return errors.email || errors.message ? false : true;
-};
+});
 
 const sendMessage = () => {
-  const valid = validInputs();
-  if (!valid) return;
-  alert(valid);
+  errors.email = !formData.email || !emailIsValid.value;
+  errors.message = !formData.message;
+  if (!validInputs.value) return;
   alert(JSON.stringify(formData));
 };
 
 watch(
   () => ({ ...formData }),
   (newVal, oldVal) => {
-    console.log({ newVal, oldVal });
     if (newVal.email !== oldVal.email) errors.email = false;
     if (newVal.message !== oldVal.message) errors.message = false;
   }
 );
+
+const route = useRoute();
+const router = useRouter();
+
+onMounted(async () => {
+  await router.isReady();
+  formData.item = (route.query.item as string) || null;
+});
 </script>
 
 <template>
   <form novalidate @submit.prevent="sendMessage">
+    <span v-if="!validInputs" class="error-message">
+      Please correct the errors below
+    </span>
     <div class="form-input-container">
       <input
         v-model="formData.name"
         class="form-input"
         type="text"
         name="name"
-        placeholder="Your name"
+        autocomplete="name"
+        placeholder="Contact name (optional)"
       />
     </div>
     <div class="form-input-container">
@@ -61,9 +78,10 @@ watch(
         :class="{ error: errors.email }"
         name="email"
         type="email"
-        placeholder="Your email address"
+        autocomplete="email"
+        placeholder="Contact email"
       />
-      <span v-if="errors.email" class="form-error-message">
+      <span v-if="errors.email" class="error-message">
         Please enter a
         {{ formData.email && !emailIsValid ? "valid " : "" }}contact email
       </span>
@@ -73,10 +91,10 @@ watch(
         v-model="formData.message"
         class="form-input"
         :class="{ error: errors.message }"
-        placeholder="Your message"
+        placeholder="Your message regarding what was found where and any further contact info where relevant"
         name="message"
       />
-      <span v-if="errors.message" class="form-error-message">
+      <span v-if="errors.message" class="error-message">
         Please enter a message
       </span>
     </div>
@@ -92,19 +110,30 @@ form
   min-width: 80vw
   display: flex
   flex-direction: column
+  position: relative
+  padding-top: 1.5rem
+
+  > span
+    position: absolute
+    top: 0
+    left: 0
 
   > div
-    margin-top: 1rem
+    margin-bottom: 1rem
 
 input, textarea
   width: 100%
+
+textarea
+  height: 100px
+  resize: vertical
 
 .form-input-container
   .form-input
     &.error
       border: 1px solid red
 
-  .form-error-message
-    font-size: 0.8rem
-    color: red
+.error-message
+  font-size: 0.8rem
+  color: red
 </style>
