@@ -1,3 +1,5 @@
+$primaryColor: #e0a800
+
 :root
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif
   line-height: 1.5
@@ -11,24 +13,32 @@
   -moz-osx-font-smoothing: grayscale
   -webkit-text-size-adjust: 100%
 
+* 
+  box-sizing: border-box
+  
 a
   font-weight: 500
-  color: #646cff
+  color: $primaryColor
   text-decoration: inherit
 
   &:hover
-    color: #535bf2
+    filter: brightness(150%)
+
+html, body
+  height: 100%
 
 body
   margin: 0
   display: flex
   place-items: center
   min-width: 320px
-  min-height: 100vh
 
 h1
   font-size: 3.2em
   line-height: 1.1
+
+h1, h2, h3, h4, h5, h6 
+  color: $primaryColor
 
 button
   border-radius: 8px
@@ -40,32 +50,28 @@ button
   background-color: #1a1a1a
   cursor: pointer
   transition: border-color 0.25s
+  color: $primaryColor
 
   &:hover
-    border-color: #646cff
+    border-color: $primaryColor
 
   &:focus,
   &:focus-visible
     outline: 4px auto -webkit-focus-ring-color
 
-
-.card
-  padding: 2em
-
 #app
-  max-width: 1280px
+  height: 100%
+  width: 100%
   margin: 0 auto
   padding: 2rem
-  text-align: center
+  padding-bottom: 0
+  display: flex
+  flex-direction: column
+  align-items: center
 
-@media (prefers-color-scheme: light)
-  :root
-    color: #213547
-    background-color: #ffffff
-  
-  a:hover
-    color: #747bff
-  
-  button
-    background-color: #f9f9f9
+.page-content
+  flex: 1 0 auto
+
+footer
+  flex-shrink: 0
   
