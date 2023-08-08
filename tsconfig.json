@@ -21,7 +21,8 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*", "./dist/*"]
+      "@/*": ["./src/*", "./dist/*"],
+      "@/components/*": ["./src/components/*", "./dist/pages/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
