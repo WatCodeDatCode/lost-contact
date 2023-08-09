@@ -3,7 +3,7 @@ import HomePage from "@/pages/HomePage.vue";
 import SuccessPage from "@/pages/SuccessPage.vue";
 
 export default createRouter({
-  history: createWebHistory(),
+  history: createWebHistory("/lost-contact"),
   routes: [
     {
       path: "/",
